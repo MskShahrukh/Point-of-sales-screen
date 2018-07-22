@@ -1,0 +1,55 @@
+<div class="container main-page">
+  
+<!-- Food Categories Section -->
+<div class="container menu-sections category-selection">
+
+  <div *ngFor=" let foodCategory of foodCategories">
+    <div class="food-category-boxes" (click)="onSelect(foodCategory)">
+      <h3>{{foodCategory}}</h3>
+    </div>
+  </div>
+
+</div>
+
+<!--  Products section  -->
+<div class="container menu-sections products-main">
+
+  <div class=" section-items">
+
+    <div *ngFor=" let item of selection">
+      <div class="products" (click)="onSelectProduct(item)">
+        <p>{{item.name}}</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!--  Bill section  -->
+<div class="container menu-sections  bill">
+  <div class="cash-section-items section-items">
+    
+    <div *ngFor=" let item of cashSection" class="itemsS">
+      <div class="cash-out-details">
+        <b>{{item.name}} </b>
+      </div>
+      <div class="cash-out-details">x{{item.quantity}} </div>
+      <div class="cash-out-details"> Rs. {{item.BilledAmount}} </div>
+      <div class=" cash-out-details delete-btn" (click)="deleteProduct(item)">x</div>
+    </div>
+
+  </div>
+  <div class="total">
+    Grand total : {{totalBill}} Rs.
+    <br>
+    <div class="cash-out-Btn" (click)="cashout()"> Cash Out </div>
+  </div>
+
+</div>
+
+<!-- End Of All three Sections -->
+<div style="clear: both;"></div>
+
+</div>
