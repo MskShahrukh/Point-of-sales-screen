@@ -122,14 +122,15 @@ export class POSMainScreenComponent implements OnInit {
       "Total Bill" : this.totalBill ,
       "Bill Details": this.cashSection
     };
-    console.log(JSON.stringify(BillGenerated));
+
+    console.log(BillGenerated);
     // console.log("total bill = ", this.totalBill);
     // console.log(" bill details = ", this.cashSection);
     this.cashSection.forEach(product => {
       product.quantity = 1;
       product.BilledAmount = 0;
     });
-    
+
 
     this.cashSection = [];
     this.totalBill = 0;
