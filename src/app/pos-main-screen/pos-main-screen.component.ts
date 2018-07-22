@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-pos-main-screen',
-  templateUrl: './pos-main-screen.component.html',
-  styleUrls: ['./pos-main-screen.component.css']
+  selector: "app-pos-main-screen",
+  templateUrl: "./pos-main-screen.component.html",
+  styleUrls: ["./pos-main-screen.component.css"]
 })
 export class POSMainScreenComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   foodCategories = ["Burgers", "Gravy", "Rice", "Bar Bq", "Drinks", "Salad"];
 
@@ -118,12 +116,16 @@ export class POSMainScreenComponent implements OnInit {
   }
 
   cashout() {
-    var BillGenerated  = {
-      "Total Bill" : this.totalBill ,
+    var BillGenerated = {
+      "Total Bill": this.totalBill,
       "Bill Details": this.cashSection
     };
 
-    console.log(BillGenerated);
+    var parseAction = JSON.stringify(BillGenerated);
+    parseAction = JSON.parse(parseAction);
+
+    console.log(parseAction);
+    console.log("------------------------------");
     // console.log("total bill = ", this.totalBill);
     // console.log(" bill details = ", this.cashSection);
     this.cashSection.forEach(product => {
@@ -131,9 +133,7 @@ export class POSMainScreenComponent implements OnInit {
       product.BilledAmount = 0;
     });
 
-
     this.cashSection = [];
     this.totalBill = 0;
   }
-
 }
