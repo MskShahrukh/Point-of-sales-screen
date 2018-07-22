@@ -108,6 +108,12 @@ export class POSMainScreenComponent implements OnInit {
   }
   deleteProduct(item) {
     this.totalBill = this.totalBill - item.BilledAmount;
+    this.cashSection.forEach(element => {
+      
+      if(element.name == item.name){
+        element.quantity = 1;
+      }
+    });
 
     var index = this.cashSection.indexOf(item);
     if (index > -1) {
