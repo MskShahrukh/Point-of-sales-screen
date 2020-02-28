@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { v4 as uuidv4 } from "uuid";
 
 @Component({
   selector: "app-pos-main-screen",
@@ -109,8 +110,7 @@ export class POSMainScreenComponent implements OnInit {
   deleteProduct(item) {
     this.totalBill = this.totalBill - item.BilledAmount;
     this.cashSection.forEach(element => {
-      
-      if(element.name == item.name){
+      if (element.name == item.name) {
         element.quantity = 1;
       }
     });
@@ -122,15 +122,30 @@ export class POSMainScreenComponent implements OnInit {
   }
 
   cashout() {
-    var BillGenerated = {
+    let today = new Date();
+    let date =
+      today.getDate() +
+      "/" +
+      (today.getMonth() + 1) +
+      "/" +
+      today.getFullYear();
+
+    let time =
+      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+    let BillGenerated = {
       "Total Bill": this.totalBill,
-      "Bill Details": this.cashSection
+      "Bill Details": this.cashSection,
+      Server: "Employee002",
+      time,
+      date,
+      orderID: uuidv4()
     };
 
-    var parseAction = JSON.stringify(BillGenerated);
-    parseAction = JSON.parse(parseAction);
+    // var parseAction = JSON.stringify(BillGenerated);
+    // parseAction = JSON.parse(parseAction);
 
-    console.log(parseAction);
+    console.log(BillGenerated);
     console.log("------------------------------");
     // console.log("total bill = ", this.totalBill);
     // console.log(" bill details = ", this.cashSection);
